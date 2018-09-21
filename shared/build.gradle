@@ -30,6 +30,12 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-auth:16.0.1'
+    implementation 'com.google.firebase:firebase-database:16.0.1'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-invites:16.0.1'
+    implementation 'com.google.firebase:firebase-messaging:17.1.0'
 }
 apply plugin: 'com.google.gms.google-services'
 
