@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "123629493043",
+    "firebase_url": "https://aceplushackthon.firebaseio.com",
+    "project_id": "aceplushackthon",
+    "storage_bucket": "aceplushackthon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123629493043:android:a4de1c1b466d543a",
+        "android_client_info": {
+          "package_name": "com.aceplus.shared"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123629493043-bo83eftneb762uefp85tkmnf9b7biukl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aceplus.shared",
+            "certificate_hash": "e5a121cb59caa920a25e90b06c74636488bcd6fd"
+          }
+        },
+        {
+          "client_id": "123629493043-asq2t7vup4u73f9t33tl1eemqau9v963.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCATI_nxH2OUaUeb4hLUUsik_lwv18QUoQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123629493043-asq2t7vup4u73f9t33tl1eemqau9v963.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
