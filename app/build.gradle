@@ -28,4 +28,10 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation project(path: ':shared')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.1.0'
+
+    implementation 'com.jakewharton:butterknife:8.1.0'
+    compile 'com.github.devlight:infinitecycleviewpager:1.0.2'
+    compile 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
 }
