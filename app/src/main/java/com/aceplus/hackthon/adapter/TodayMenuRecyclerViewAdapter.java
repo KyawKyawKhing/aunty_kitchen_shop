@@ -1,13 +1,17 @@
 package com.aceplus.hackthon.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.aceplus.hackthon.CustomDialog;
 import com.aceplus.hackthon.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -19,13 +23,15 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
     private static final int VIEW_TYPE_LOADING = 0;
     private static final int VIEW_TYPE_CONTENT = 1;
     private final Context context;
+    private final Activity activity;
 
     private int totalSize;
     private long movieId;
 
 
-    public TodayMenuRecyclerViewAdapter(Context context) {
+    public TodayMenuRecyclerViewAdapter(Context context, Activity a) {
         this.context = context;
+        this.activity = a;
     }
 
     public int getTotalSize() {
@@ -50,12 +56,23 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
         }
         final View view = LayoutInflater.from(context).inflate(R.layout.menu_item,
                 parent, false);
-        return new SimpleViewHolder(view);
+        return new OrderViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        if (holder instanceof SimpleViewHolder) {
+        if (holder instanceof OrderViewHolder) {
+
+
+            ((OrderViewHolder) holder).btnOrder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    CustomDialog customDialog = new CustomDialog(activity);
+                    customDialog.show();
+                    customDialog.setCanceledOnTouchOutside(false);
+                }
+            });
 
 
         } else if (holder instanceof LoadingViewHolder) {
@@ -97,12 +114,16 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
     }
 */
 
-    public class SimpleViewHolder extends RecyclerView.ViewHolder {
+    public class OrderViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.btn_order)
+        Button btnOrder;
 
-        public SimpleViewHolder(View itemView) {
+        public OrderViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+
         }
     }
 

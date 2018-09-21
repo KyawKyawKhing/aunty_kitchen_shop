@@ -31,13 +31,13 @@ public class TodayMenuActivity extends AppCompatActivity {
         setUpRcv_TodayMenu();
     }
 
-    @OnClick(R.id.toolBar)
+    @OnClick(R.id.imgBack)
     public void goBack() {
         onBackPressed();
     }
 
     private void setUpRcv_TodayMenu() {
-        todayMenuRecyclerViewAdapter = new TodayMenuRecyclerViewAdapter(this);
+        todayMenuRecyclerViewAdapter = new TodayMenuRecyclerViewAdapter(this, TodayMenuActivity.this);
         mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rcv_TodayMenu.setLayoutManager(mLayoutManager);
         rcv_TodayMenu.setAdapter(todayMenuRecyclerViewAdapter);
