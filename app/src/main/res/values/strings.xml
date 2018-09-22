@@ -10,4 +10,10 @@
     <string name="special_order">Special Order</string>
     <string name="Order">Order</string>
     <string name="History">History</string>
+    <string name="user_name">User Name</string>
+    <string name="sign_out"><u>Sign Out</u></string>
+    <string name="save_changes">Save Changes</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="new_password">New Password</string>
 </resources>

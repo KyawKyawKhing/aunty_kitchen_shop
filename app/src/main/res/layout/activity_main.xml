@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="30sp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="50dp"
@@ -23,7 +23,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Htet Su Wai" />
+            tools:text="Htet Su Wai" />
 
         <ImageView
             android:layout_marginLeft="8dp"
@@ -38,7 +38,7 @@
         android:layout_marginLeft="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="B2B Team"
+        tools:text="B2B Team"
         android:textColor="@color/colorWhite"/>
 
 

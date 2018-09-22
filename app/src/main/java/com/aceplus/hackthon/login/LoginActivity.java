@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,7 +23,7 @@ import butterknife.OnClick;
 import butterknife.Optional;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity{
 
     @BindView(R.id.edt_email)
     EditText edtEmail;
@@ -44,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void init() {
         ButterKnife.bind(this);
-
         auth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         if (auth.getCurrentUser() != null) {
@@ -89,12 +87,6 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
-                            final String UUID = task.getResult().getUser().getUid();
-
-                            Login login = new Login();
-                            login.setUuid(mDatabase.child("isLoginUser").push().getKey());
-                            mDatabase.child("isLoginUser").child(login.getUuid()).setValue(email);
-                            Log.i("UUID", UUID);
                         }
                     }
                 });
@@ -116,4 +108,8 @@ public class LoginActivity extends AppCompatActivity {
         this.startActivity(i);
     }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }

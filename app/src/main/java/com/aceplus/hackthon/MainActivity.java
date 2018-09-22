@@ -10,26 +10,30 @@ import android.widget.TextView;
 
 import com.aceplus.hackthon.adapter.HorizontalPagerAdapter;
 import com.aceplus.hackthon.login.LoginActivity;
+import com.aceplus.hackthon.user_profile.ProfileActivity;
+import com.aceplus.shared.VO.UserVO;
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 
 import org.jetbrains.annotations.Nullable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainActivityContract.View{
 
     @BindView(R.id.txt_userName)
     TextView txtUserName;
+    @BindView(R.id.teamName)
+    TextView txtTeamName;
     @Nullable
     @BindView(R.id.vp_category)
     HorizontalInfiniteCycleViewPager vpCategory;
     private FirebaseAuth auth;
     private String message;
-    private DatabaseReference mDatabase;
+    private MainActivityContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
     private void init(){
         ButterKnife.bind(this);
         getExtra();
-
+        presenter = new MainActivityPresenter(this);
         auth = FirebaseAuth.getInstance();
+        presenter.getUser();
         FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -79,7 +84,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.nameLayout)
+    public void gotoEditProfile(){
+
+        Intent i = new Intent(this, ProfileActivity.class);
+        startActivity(i);
+    }
+
     private void setUpVpCategory(){
         vpCategory.setAdapter(new HorizontalPagerAdapter(getApplicationContext()));
+    }
+
+    @Override
+    public void showUser(UserVO userVO) {
+        txtTeamName.setText(userVO.getUserDepartment());
     }
 }

@@ -1,5 +1,8 @@
 package com.aceplus.shared.Util
 
+import java.text.SimpleDateFormat
+import java.util.*
+
 /**
  * Created by kkk on 9/22/2018.
  */
@@ -21,6 +24,18 @@ class Utils {
                 "11" -> return "Dec"
             }
             return ""
+        }
+
+        fun getTodayDateNode(): String {
+            val calendar = Calendar.getInstance().time
+            println("Current time => " + calendar)
+            val df = SimpleDateFormat("dd-MM-yyyy")
+            val formattedDate = df.format(calendar)
+            return formattedDate
+        }
+
+        fun getRadomId(): String? {
+            return (System.currentTimeMillis() / 1000).toString()
         }
     }
 }
