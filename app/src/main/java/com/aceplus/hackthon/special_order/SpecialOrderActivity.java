@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aceplus.hackthon.R;
 import com.aceplus.shared.VO.AvailableItemVO;
@@ -121,7 +120,7 @@ public class SpecialOrderActivity extends AppCompatActivity implements SpecialOr
 
     @Override
     public void showSuccessfulOrder() {
-        Toast.makeText(getApplicationContext(), "Successful Order!", Toast.LENGTH_SHORT).show();
+       finish();
     }
 
 

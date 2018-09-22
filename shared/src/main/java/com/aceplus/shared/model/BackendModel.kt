@@ -226,7 +226,7 @@ class BackendModel constructor(val context: Context) {
 
     fun addUser(userVO: UserVO,callback : ModelCallback.LoginUserCallback){
         mDatabaseReference.child("user").child(userVO.userId.toString()).setValue(userVO)
-        callback.loginSucceed(userVO)
+        callback.loginSucceed(userVO);
     }
 
     fun addTodaySpecialOrder(itemNode: String, order: OrderItemVO) {
