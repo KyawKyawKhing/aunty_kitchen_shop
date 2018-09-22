@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.aceplus.hackthon.R;
 import com.aceplus.hackthon.Utils.Utils;
+import com.aceplus.hackthon.special_order.SpecialOrderActivity;
 import com.aceplus.hackthon.today_menu.TodayMenuActivity;
 
 import static com.aceplus.hackthon.Utils.Utils.setupItem;
@@ -64,7 +65,9 @@ public class HorizontalPagerAdapter extends PagerAdapter {
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(i);
                     }else if(position == 1){
-
+                        Intent i = new Intent(mContext, SpecialOrderActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(i);
                     }else {
 
                     }

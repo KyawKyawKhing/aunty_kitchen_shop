@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aceplus.hackthon">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -21,7 +22,8 @@
         <activity android:name=".login.SignUpActivity" />
         <activity android:name=".login.ResetPasswordActivity" />
 
-        <!--<service android:name=".notification.MyFireBaseMessagingService">
+        <!--
+        <service android:name=".notification.MyFireBaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -30,9 +32,11 @@
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
-        </service>-->
+        </service>
+        -->
 
-        <activity android:name=".today_menu.TodayMenuActivity"></activity>
+        <activity android:name=".today_menu.TodayMenuActivity" />
+        <activity android:name=".special_order.SpecialOrderActivity"></activity>
     </application>
 
 </manifest>
