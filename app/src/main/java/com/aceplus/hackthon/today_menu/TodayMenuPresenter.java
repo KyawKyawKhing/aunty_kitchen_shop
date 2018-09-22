@@ -39,16 +39,20 @@ public class TodayMenuPresenter implements TodayMenuContract.Presenter {
 
     @Override
     public void getUser() {
-        BackendModel.Companion.getInstance().getUser( new ModelCallback.LoginUserCallback() {
-            @Override
-            public void loginSucceed(@NotNull UserVO userVO) {
-                view.showUser(userVO);
-            }
+
+        BackendModel.Companion.getInstance().getUser(new ModelCallback.LoginUserCallback() {
 
             @Override
             public void loginFailed(@NotNull String message) {
 
             }
+
+            @Override
+            public void loginSucceed(@NotNull UserVO userVO) {
+                view.showUser(userVO);
+            }
+
         });
     }
+
 }

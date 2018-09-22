@@ -51,28 +51,7 @@ public class TodayMenuActivity extends AppCompatActivity implements TodayMenuCon
         mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rcv_TodayMenu.setLayoutManager(mLayoutManager);
         rcv_TodayMenu.setAdapter(todayMenuRecyclerViewAdapter);
-        /*dref= FirebaseDatabase.getInstance().getReference();
-        dref.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                itemList1.add(dataSnapshot.getValue(AvailableItemVO.class));
-                todayMenuRecyclerViewAdapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                itemList1.remove(dataSnapshot.getValue(AvailableItemVO.class));
-                todayMenuRecyclerViewAdapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });*/
+
     }
 
     @Override

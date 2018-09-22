@@ -28,7 +28,6 @@ public class CustomDialog extends Dialog {
 
     private final Long itemTotal;
     private final Long itemPrice;
-    private OrderItemVO orderItemVO;
     private final UserVO userVO;
     private final String itemId;
     private final String itemName;
@@ -66,8 +65,8 @@ public class CustomDialog extends Dialog {
 
     }
 
-    private void createOrderObject(){
-        orderItemVO = new OrderItemVO();
+    private OrderItemVO createOrderObject(){
+        OrderItemVO orderItemVO = new OrderItemVO();
         orderItemVO.setCustomerDepartment(userVO.getUserDepartment());
         orderItemVO.setCustomerName(userVO.getUserName());
         orderItemVO.setCustomerId(userVO.getUserId());
@@ -76,6 +75,7 @@ public class CustomDialog extends Dialog {
         orderItemVO.setItemPrice(String.valueOf(itemPrice));
         orderItemVO.setCustomerRemark(remarkText.getText().toString());
         orderItemVO.setItemCount(String.valueOf(itemAmount));
+        return orderItemVO;
     }
 
     @OnClick(R.id.img_close)
@@ -101,8 +101,7 @@ public class CustomDialog extends Dialog {
 
     @OnClick(R.id.btn_confirm)
     public void doOrder() {
-        createOrderObject();
-        BackendModel.Companion.getInstance().addTodayNormalOrder(Utils.Companion.getTodayDateNode(), orderItemVO, new ModelCallback.AddOrderCallback() {
+        BackendModel.Companion.getInstance().addTodayNormalOrder(Utils.Companion.getTodayDateNode(), createOrderObject(), new ModelCallback.AddOrderCallback() {
             @Override
             public void addOrderSucceed(@NotNull String message) {
                 dismiss();

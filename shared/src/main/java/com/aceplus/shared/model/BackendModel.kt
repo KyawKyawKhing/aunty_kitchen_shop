@@ -185,6 +185,11 @@ class BackendModel constructor(val context: Context) {
         })
     }
 
+    fun addTodaySpecialOrder(itemNode: String, order: OrderItemVO, callback: ModelCallback.AddOrderCallback) {
+        mDatabaseReference.child("daily_item").child(itemNode).child("special_orders").child(order.customerId!!).child(Utils.getRadomId().toString()).setValue(order)
+        callback.addOrderSucceed("Success Order!")
+    }
+
     fun displaySpecialAllItem(callback: ModelCallback.GetAllItemCallback) {
         mDatabaseReference.child("special_item").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
