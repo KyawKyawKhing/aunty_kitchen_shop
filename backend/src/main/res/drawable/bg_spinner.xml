@@ -1,0 +1,20 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+
+        <layer-list>
+            <item>
+                <color android:color="@color/colorWhite" />
+                <shape>
+                    <corners android:radius="8dp" />
+                    <stroke android:width="2dp" android:color="#FFF" />
+                </shape>
+            </item>
+            <item>
+                <bitmap android:gravity="right|center_vertical" android:src="@drawable/ic_spinner_dropdown" />
+            </item>
+
+        </layer-list>
+
+    </item>
+
+</selector>

@@ -1,18 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.aceplus.backend.MainActivity">
+    android:background="@drawable/main_bg"
+    android:orientation="vertical"
+    tools:context="com.aceplus.backend.ui.activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="48dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/logo" />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/btnSell"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_margin="16dp"
+        android:background="#fff"
+        android:text="ေစ်းေရာင္းမယ္"
+        android:textColor="#000"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btnTodayNormalOrder"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_margin="16dp"
+        android:background="#fff"
+        android:text="ဒီေန႕အမွာစာရင္း"
+        android:textColor="#000"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btnSpecialOrder"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_margin="16dp"
+        android:background="#fff"
+        android:text="ျကိဳတင္ အမွာစာရင္း"
+        android:textColor="#000"
+        android:textSize="22sp" />
+
+</LinearLayout>
