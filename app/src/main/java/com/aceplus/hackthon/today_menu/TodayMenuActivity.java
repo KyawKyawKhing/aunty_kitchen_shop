@@ -18,6 +18,7 @@ public class TodayMenuActivity extends AppCompatActivity {
     TodayMenuRecyclerViewAdapter todayMenuRecyclerViewAdapter;
     private LinearLayoutManager mLayoutManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
