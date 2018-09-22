@@ -1,9 +1,11 @@
 package com.aceplus.shared.model
 
 import android.content.Context
+import com.aceplus.shared.Util.Utils
 import com.aceplus.shared.VO.AdminUserVO
 import com.aceplus.shared.VO.AvailableItemVO
 import com.aceplus.shared.VO.OrderItemVO
+import com.aceplus.shared.VO.UserVO
 import com.aceplus.shared.modelcallback.ModelCallback
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
@@ -165,13 +167,14 @@ class BackendModel constructor(val context: Context) {
 
             override fun onDataChange(p0: DataSnapshot) {
                 for (ds in p0.children) {
-                    if (ds.hasChild(order.itemId!!)) {
-                        val itemVO = ds.child(order.itemId!!).getValue(AvailableItemVO::class.java)
+                    if (ds.key.equals(order.itemId!!)) {
+                        val itemVO = ds.getValue(AvailableItemVO::class.java)
                         var count = itemVO!!.itemCount!! - order.itemCount!!.toLong()
                         if (count >= 0) {
                             itemVO.itemCount = count
                             mDatabaseReference.child("daily_item").child(itemNode).child("available_item").child(order.itemId!!).setValue(itemVO)
-                            mDatabaseReference.child("daily_item").child(itemNode).child("normal_orders").child(order.customerId!!).setValue(order)
+                            mDatabaseReference.child("daily_item").child(itemNode).child("normal_orders").child(order.customerId!!).child(Utils.getRadomId().toString()).setValue(order)
+                            callback.addOrderSucceed("Success Order!")
                         } else {
                             callback.addOrderFailed("Cannot get this item amount")
                         }
@@ -182,8 +185,44 @@ class BackendModel constructor(val context: Context) {
         })
     }
 
+    fun displaySpecialAllItem(callback: ModelCallback.GetAllItemCallback) {
+        mDatabaseReference.child("special_item").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                callback.getDataFailed("Cannot Load Data")
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val itemList = p0.children.map { it.getValue(AvailableItemVO::class.java)!! }
+                callback.getDataSucceed(itemList)
+            }
+
+        })
+    }
+
+    fun getUser(callback: ModelCallback.LoginUserCallback){
+        mDatabaseReference.child("user").child(mFirebaseAuth!!.currentUser!!.uid).addValueEventListener(object : ValueEventListener{
+
+            override fun onCancelled(p0: DatabaseError) {
+                callback.loginFailed("Failed")
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val userVO = p0.getValue(UserVO::class.java)
+                if (userVO != null) {
+                    callback.loginSucceed(userVO)
+                }
+            }
+
+
+        })
+    }
+
+    fun addUser(userVO: UserVO,callback : ModelCallback.LoginUserCallback){
+        mDatabaseReference.child("user").child(userVO.userId.toString()).setValue(userVO)
+    }
+
     fun addTodaySpecialOrder(itemNode: String, order: OrderItemVO) {
-        mDatabaseReference.child("daily_item").child(itemNode).child("special_orders").child(order.customerId!!).setValue(order)
+        mDatabaseReference.child("daily_item").child(itemNode).child("special_orders").child(order.customerId!!)
     }
 
     fun displayAllItem(callback: ModelCallback.GetAllItemCallback) {

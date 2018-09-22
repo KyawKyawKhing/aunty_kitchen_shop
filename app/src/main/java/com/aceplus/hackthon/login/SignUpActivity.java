@@ -11,10 +11,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.aceplus.hackthon.R;
+import com.aceplus.shared.VO.UserVO;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity implements LoginContract.View {
 
     @BindView(R.id.sp_department)
     Spinner spDepartment;
@@ -32,6 +35,8 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.edt_signUpPassword)
     EditText inputPassword;
     private FirebaseAuth auth;
+    DatabaseReference databaseReference;
+    LoginContract.Presenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +46,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void init() {
         ButterKnife.bind(this);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        presenter = new LoginPresenter(this);
         auth = FirebaseAuth.getInstance();
         setUpDepartmentSpinner();
     }
@@ -94,10 +101,20 @@ public class SignUpActivity extends AppCompatActivity {
                                    Toast.LENGTH_SHORT).show();
                        } else {
                            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                           UserVO userVO = new UserVO();
+                           userVO.setUserDepartment(spDepartment.getSelectedItem().toString());
+                           userVO.setUserId(task.getResult().getUser().getUid());
+                           userVO.setUserName(task.getResult().getUser().getEmail());
+                           presenter.addUser(userVO);
                            finish();
                        }
                    }
                });
 
+    }
+
+    @Override
+    public void loginSuccess() {
+        Toast.makeText(getApplicationContext(), "Register Successful!", Toast.LENGTH_SHORT).show();
     }
 }

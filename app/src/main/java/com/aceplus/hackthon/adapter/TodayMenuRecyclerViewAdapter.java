@@ -7,9 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.aceplus.hackthon.CustomDialog;
 import com.aceplus.hackthon.R;
+import com.aceplus.shared.VO.AvailableItemVO;
+import com.aceplus.shared.VO.UserVO;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,7 +23,7 @@ import butterknife.ButterKnife;
 /**
  * Created by kyawsanwin on 8/5/16.
  */
-public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private static final int VIEW_TYPE_LOADING = 0;
     private static final int VIEW_TYPE_CONTENT = 1;
@@ -27,7 +32,8 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
 
     private int totalSize;
     private long movieId;
-
+    List<AvailableItemVO> itemList;
+    UserVO userVO;
 
     public TodayMenuRecyclerViewAdapter(Context context, Activity a) {
         this.context = context;
@@ -42,8 +48,13 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
         this.totalSize = totalSize;
     }
 
-    public void setTodayMenuList() {
+    public void setTodayMenuList(List<AvailableItemVO> itemList) {
+        this.itemList = itemList;
         notifyDataSetChanged();
+    }
+
+    public void setUserVo(UserVO userVo){
+        this.userVO = userVo;
     }
 
 
@@ -56,24 +67,35 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
         }
         final View view = LayoutInflater.from(context).inflate(R.layout.menu_item,
                 parent, false);
+
         return new OrderViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof OrderViewHolder) {
+            if (itemList.get(position).getItemCount() != null && itemList.get(position).getItemCount() != 0) {
+                holder.itemView.setVisibility(View.VISIBLE);
+                RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,330);
+                layoutParams.setMargins(16,16,16,16);
+               holder.itemView.setLayoutParams(layoutParams);
 
+                ((OrderViewHolder) holder).tvItemName.setText(itemList.get(position).getItemName());
+                ((OrderViewHolder) holder).tvItemPrice.setText(String.valueOf(itemList.get(position).getItemPrice()));
+                ((OrderViewHolder) holder).tvRemaining.setText(String.valueOf(itemList.get(position).getItemCount())+" Remaining");
+                ((OrderViewHolder) holder).btnOrder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
 
-            ((OrderViewHolder) holder).btnOrder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    CustomDialog customDialog = new CustomDialog(activity);
-                    customDialog.show();
-                    customDialog.setCanceledOnTouchOutside(false);
-                }
-            });
-
+                        CustomDialog customDialog = new CustomDialog(activity,itemList.get(position).getItemCount(),userVO,itemList.get(position).getItemId(),itemList.get(position).getItemName(),itemList.get(position).getItemPrice());
+                        customDialog.show();
+                        customDialog.setCanceledOnTouchOutside(false);
+                    }
+                });
+            }else {
+               holder.itemView.setVisibility(View.GONE);
+               holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0,0));
+            }
 
         } else if (holder instanceof LoadingViewHolder) {
            /* if (position >= totalSize && totalSize > 0) {
@@ -91,6 +113,7 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
 
     }
 
+
     @Override
     public int getItemViewType(int position) {
         //return (position >= movieList.size()) ? VIEW_TYPE_LOADING : VIEW_TYPE_CONTENT;
@@ -106,8 +129,9 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
     @Override
     public int getItemCount() {
         //return movieList == null ? 0 : movieList.size() + 1;
-        return 6;
+        return itemList == null? 0 : itemList.size();
     }
+
 
   /*  public MediaItem getItem(int position) {
         return this.movieList.get(position);
@@ -116,6 +140,12 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
 
     public class OrderViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.txt_itemName)
+        TextView tvItemName;
+        @BindView(R.id.txt_itemPrice)
+        TextView tvItemPrice;
+        @BindView(R.id.txt_remaining)
+        TextView tvRemaining;
         @BindView(R.id.btn_order)
         Button btnOrder;
 
