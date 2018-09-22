@@ -11,7 +11,7 @@ import mvp.view.AvailableItemAddView
  */
 class AvailableItemAddPresenter(view: AvailableItemAddView) : BasePresenter<AvailableItemAddView>(view) {
     fun displayItemNameSpinner() {
-        BackendModel.getInstance().displayAllItem(object : ModelCallback.GetAllItemCallback {
+        BackendModel.getInstance().displayNormalAllItem(object : ModelCallback.GetAllItemCallback {
             override fun getDataSucceed(itemList: List<AvailableItemVO>) {
                 mView.displayItemNameList(itemList)
             }

@@ -1,8 +1,9 @@
 package com.aceplus.shared.Util
 
+import android.content.Context
+import android.util.DisplayMetrics
 import java.text.SimpleDateFormat
 import java.util.*
-
 /**
  * Created by kkk on 9/22/2018.
  */
@@ -38,4 +39,5 @@ class Utils {
             return (System.currentTimeMillis() / 1000).toString()
         }
     }
+
 }

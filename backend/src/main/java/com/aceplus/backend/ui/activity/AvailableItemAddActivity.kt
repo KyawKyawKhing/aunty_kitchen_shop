@@ -37,7 +37,7 @@ class AvailableItemAddActivity : AppCompatActivity(), AvailableItemAddView {
         mItemNameSpinnerAdapter = ItemNameSpinnerAdapter(applicationContext)
         mItemCountSpinnerAdapter = ItemCountSpinnerAdapter(applicationContext)
         spItemName.adapter = mItemNameSpinnerAdapter
-        ivItemEdit.setOnClickListener { finish() }
+        ivItemEdit.setOnClickListener { startActivity(NormalItemListActivity.newIntent(applicationContext)) }
         tvItemPrice.text = "800 Kyats"
         spItemCount.adapter = mItemCountSpinnerAdapter
         mPresenter = AvailableItemAddPresenter(this)
@@ -61,10 +61,12 @@ class AvailableItemAddActivity : AppCompatActivity(), AvailableItemAddView {
     }
 
     override fun displayItemNameList(nameList: List<AvailableItemVO>) {
-        itemPrice = nameList[0].itemPrice!!
-        tvItemPrice.text = itemPrice.toString() + " Kyats"
-        itemList = nameList as MutableList<AvailableItemVO>
-        mItemNameSpinnerAdapter.newList = nameList
+        if (nameList.isNotEmpty()) {
+            itemPrice = nameList[0].itemPrice!!
+            tvItemPrice.text = itemPrice.toString() + " Kyats"
+            itemList = nameList as MutableList<AvailableItemVO>
+            mItemNameSpinnerAdapter.newList = nameList
+        }
     }
 
     override fun displayItemCountList(countList: List<String>) {

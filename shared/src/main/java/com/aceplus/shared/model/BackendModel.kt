@@ -89,11 +89,14 @@ class BackendModel constructor(val context: Context) {
         })
     }
 
-    fun addPredefineNormalItem() {
+    fun addPredefineNormalItem(vo: AvailableItemVO) {
+        mDatabaseReference.child("normal_item").child(vo.itemId!!).setValue(vo)
 
     }
 
-    fun addPredefineSpecialItem() {}
+    fun addPredefineSpecialItem(vo: AvailableItemVO) {
+        mDatabaseReference.child("normal_item").child(vo.itemId!!).setValue(vo)
+    }
 
     //add today available item by admin
     fun addTodayAvailableItem(itemNode: String, item: AvailableItemVO, callback: ModelCallback.AddTodoayAvailableItem) {
@@ -122,7 +125,12 @@ class BackendModel constructor(val context: Context) {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                val orderList = p0.children.map { it.getValue(OrderItemVO::class.java)!! }
+                val orderList = mutableListOf<OrderItemVO>()
+                for (ds in p0.children) {
+                    for (dsChild in ds.children) {
+                        orderList.add(dsChild.getValue(OrderItemVO::class.java)!!)
+                    }
+                }
                 callback.getDataSucceed(orderList)
             }
 
@@ -136,7 +144,12 @@ class BackendModel constructor(val context: Context) {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                val orderList = p0.children.map { it.getValue(OrderItemVO::class.java)!! }
+                val orderList = mutableListOf<OrderItemVO>()
+                for (ds in p0.children) {
+                    for (dsChild in ds.children) {
+                        orderList.add(dsChild.getValue(OrderItemVO::class.java)!!)
+                    }
+                }
                 callback.getDataSucceed(orderList)
             }
 
@@ -233,7 +246,7 @@ class BackendModel constructor(val context: Context) {
         mDatabaseReference.child("daily_item").child(itemNode).child("special_orders").child(order.customerId!!)
     }
 
-    fun displayAllItem(callback: ModelCallback.GetAllItemCallback) {
+    fun displayNormalAllItem(callback: ModelCallback.GetAllItemCallback) {
         mDatabaseReference.child("normal_item").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 callback.getDataFailed("Cannot Load Data")
@@ -247,4 +260,100 @@ class BackendModel constructor(val context: Context) {
         })
     }
 
+    fun displaySpecialAllItem(callback: ModelCallback.GetAllItemCallback) {
+        mDatabaseReference.child("special_item").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                callback.getDataFailed("Cannot Load Data")
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val itemList = p0.children.map { it.getValue(AvailableItemVO::class.java)!! }
+                callback.getDataSucceed(itemList)
+            }
+
+        })
+    }
+
+    fun deleteNormalItem(itemId: String) {
+        mDatabaseReference.child("normal_item").child(itemId).removeValue()
+    }
+
+    fun addNormalItem(itemVO: AvailableItemVO) {
+        mDatabaseReference.child("normal_item").child(itemVO.itemId!!).setValue(itemVO)
+    }
+
+    fun changeSentOrder(itemNode: String, orderItemVO: OrderItemVO) {
+        mDatabaseReference.child("daily_item").child(itemNode).child("normal_orders").child(orderItemVO.customerId!!).child(orderItemVO.orderId!!).setValue(orderItemVO)
+    }
+
+    fun displayAllOrder(callback: ModelCallback.GetOrderCallback) {
+        mDatabaseReference.child("daily_item").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                callback.getDataFailed("Cannot Load Data")
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val orderList = mutableListOf<OrderItemVO>()
+                for (ds in p0.children) {
+                    for (dsChild in ds.child("normal_orders").children) {
+                        for (order in dsChild.children) {
+                            orderList.add(dsChild.getValue(OrderItemVO::class.java)!!)
+                        }
+                    }
+
+                    for (dsChild in ds.child("special_orders").children) {
+                        for (order in dsChild.children) {
+                            orderList.add(dsChild.getValue(OrderItemVO::class.java)!!)
+                        }
+                    }
+                }
+                callback.getDataSucceed(orderList)
+            }
+
+        })
+    }
+
+    fun displayOrderByDateByUser(orderNode: String, userId: String, callback: ModelCallback.GetOrderCallback) {
+        mDatabaseReference.child("daily_item").child(orderNode).addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val orderList = mutableListOf<OrderItemVO>()
+                for (normalOrder in p0.child("normal_orders").child(userId).children) {
+                    orderList.add(normalOrder.getValue(OrderItemVO::class.java)!!)
+                }
+                for (normalOrder in p0.child("special_orders").child(userId).children) {
+                    orderList.add(normalOrder.getValue(OrderItemVO::class.java)!!)
+                }
+                callback.getDataSucceed(orderList)
+            }
+
+        })
+    }
+
+    fun displayOrderByDateByAdmin(orderNode: String, callback: ModelCallback.GetOrderCallback) {
+        mDatabaseReference.child("daily_item").child(orderNode).addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val orderList = mutableListOf<OrderItemVO>()
+                for (normalOrder in p0.child("normal_orders").children) {
+                    for (ds in normalOrder.children) {
+                        orderList.add(ds.getValue(OrderItemVO::class.java)!!)
+                    }
+                }
+                for (normalOrder in p0.child("special_orders").children) {
+                    for (ds in normalOrder.children) {
+                        orderList.add(ds.getValue(OrderItemVO::class.java)!!)
+                    }
+                }
+                callback.getDataSucceed(orderList)
+            }
+
+        })
+    }
 }

@@ -1,4 +1,15 @@
 <resources>
-    <string name="app_name">backend</string>
+    <string name="app_name">Kitchen</string>
     <string name="add_available_item">ထပ္ထည့္မယ္</string>
+    <string name="edit_item">ျပင္ဆင္မည္</string>
+    <string name="delete_item">ဖ်က္မည္</string>
+    <string name="add_item_new">အသစ္ထည့္မယ္</string>
+    <string name="save_item">သိမ္းမည္</string>
+    <string name="insert_item">ထပ္ထည့္မယ္</string>
+    <string name="price">ေစ်းနႈန္း</string>
+    <string name="name">အမည္</string>
+    <string name="today_order">ေစ်း၀ယ္ရန္</string>
+    <string name="tomorrow_order">မနက္ျဖန္ အမွာစာရင္း</string>
+    <string name="sent_order">ပို႕ျပီး</string>
+    <string name="report">အေရာင္းစာရင္း အနွစ္ခ်ဴပ္</string>
 </resources>
