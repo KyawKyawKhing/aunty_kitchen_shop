@@ -6,6 +6,6 @@ package com.aceplus.shared.VO
 class AvailableItemVO {
     var itemId: String? = null
     var itemName: String? = null
-    var itemPrice: String? = null
-    var itemCount: String? = null
+    var itemPrice: Long? = null
+    var itemCount: Long? = null
 }

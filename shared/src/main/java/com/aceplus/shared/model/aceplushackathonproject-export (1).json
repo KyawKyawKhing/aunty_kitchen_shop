@@ -1,0 +1,133 @@
+{
+  "daily_item": {
+    "2292018": {
+      "available_item": {
+        "i0001": {
+          "itemId": "i0001",
+          "itemName": "မုန္႕ဟင္းခါး",
+          "itemPrice": 800
+        },
+        "i0002": {
+          "itemId": "i0002",
+          "itemName": "မုန္႕ဟင္းခါး",
+          "itemPrice": 800
+        },
+        "i0003": {
+          "itemId": "i0003",
+          "itemName": "မုန္႕ဟင္းခါး",
+          "itemPrice": 800
+        },
+        "i0004": {
+          "itemId": "i0004",
+          "itemName": "မုန္႕ဟင္းခါး",
+          "itemPrice": 800
+        },
+        "i0005": {
+          "itemId": "i0005",
+          "itemName": "မုန္႕ဟင္းခါး",
+          "itemPrice": 800
+        }
+      },
+      "normal_order": {
+        "u001": {
+          "customerDepartment": "B2B",
+          "customerId": "u001",
+          "customerName": "Mg Mg",
+          "description": "nbhjjjkkklklkl",
+          "itemCount": 2,
+          "itemName": "မုန္႕ဟင္းခါး"
+        },
+        "u002": {
+          "customerDepartment": "B2B",
+          "customerId": "u002",
+          "customerName": "Mg Mg",
+          "description": "nbhjjjkkklklkl",
+          "itemCount": 2,
+          "itemName": "မုန္႕ဟင္းခါး"
+        }
+      },
+      "special_order": {
+        "u001": {
+          "customerDepartment": "B2B",
+          "customerId": "u001",
+          "customerName": "Mg Mg",
+          "description": "nbhjjjkkklklkl",
+          "itemCount": 1,
+          "itemName": "မုန္႕ဟင္းခါး"
+        },
+        "u002": {
+          "customerDepartment": "B2B",
+          "customerId": "u002",
+          "customerName": "Mg Mg",
+          "description": "nbhjjjkkklklkl",
+          "itemCount": 1,
+          "itemName": "မုန္႕ဟင္းခါး"
+        }
+      }
+    }
+  },
+  "admin": {
+    "u001": {
+      "userId": "u001",
+      "userName": "Daw Daw",
+      "password": "Daw Daw"
+    },
+    "u002": {
+      "userId": "u002",
+      "userName": "Mya Mya",
+      "password": "Mya Mya"
+    }
+  },
+  "isLoginUser": {
+    "-LMvZHeDZpAEX0lUrqyC": "satthit11@gmail.com",
+    "-LMvZMWSx82boIV4B1GX": "s@gmail.com",
+    "-LMwZ4V4QmTUFrZ8OyXB": "satthit11@gmail.com",
+    "-LMwhl8t5Go1_pChDnQ7": "satthit11@gmail.com"
+  },
+  "normal_item": {
+    "001": {
+      "itemId": "001",
+      "itemName": "မုန္႔ဟင္းခါး",
+      "itemPrice": 800
+    },
+    "002": {
+      "itemId": "002",
+      "itemName": "မုန္႔ဟင္းခါး",
+      "itemPrice": 800
+    },
+    "003": {
+      "itemId": "003",
+      "itemName": "မုန္႔ဟင္းခါး",
+      "itemPrice": 800
+    }
+  },
+  "special_item": {
+    "001": {
+      "itemId": "001",
+      "itemName": "နန္းျကီးသုပ္",
+      "itemPrice": 1500
+    },
+    "002": {
+      "itemId": "002",
+      "itemName": "နန္းျကီးသုပ္",
+      "itemPrice": 1500
+    },
+    "003": {
+      "itemId": "003",
+      "itemName": "နန္းျကီးသုပ္",
+      "itemPrice": 1500
+    }
+  },
+  "user": {
+    "u0001": {
+      "userDepartment": "B2B",
+      "userId": "u0001",
+      "userName": "Mg Mg"
+    },
+    "u0002": {
+      "userDepartment": "B2B",
+      "userId": "u0002",
+      "userName": "Mg Mg"
+    }
+  }
+}
