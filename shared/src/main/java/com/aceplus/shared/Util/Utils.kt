@@ -2,9 +2,8 @@ package com.aceplus.shared.Util
 
 import android.content.Context
 import android.util.DisplayMetrics
-
-
-
+import java.text.SimpleDateFormat
+import java.util.*
 /**
  * Created by kkk on 9/22/2018.
  */
@@ -28,21 +27,16 @@ class Utils {
             return ""
         }
 
-        fun convertDpToPixel(dp: Float, context: Context): Float {
-            val resources = context.getResources()
-            val metrics = resources.getDisplayMetrics()
-            return dp * (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+        fun getTodayDateNode(): String {
+            val calendar = Calendar.getInstance().time
+            println("Current time => " + calendar)
+            val df = SimpleDateFormat("dd-MM-yyyy")
+            val formattedDate = df.format(calendar)
+            return formattedDate
         }
 
-        /**
-         * This method converts device specific pixels to density independent pixels.
-         *
-         * @param px A value in px (pixels) unit. Which we need to convert into db
-         * @param context Context to get resources and device specific display metrics
-         * @return A float value to represent dp equivalent to px value
-         */
-        fun convertPixelsToDp(px: Float, context: Context): Float {
-            return px / (context.getResources().getDisplayMetrics().densityDpi as Float / DisplayMetrics.DENSITY_DEFAULT)
+        fun getRadomId(): String? {
+            return (System.currentTimeMillis() / 1000).toString()
         }
     }
 
