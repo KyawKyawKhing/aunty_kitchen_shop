@@ -173,6 +173,7 @@ class BackendModel constructor(val context: Context) {
                         if (count >= 0) {
                             itemVO.itemCount = count
                             mDatabaseReference.child("daily_item").child(itemNode).child("available_item").child(order.itemId!!).setValue(itemVO)
+                            order.orderId=Utils.getRadomId().toString()
                             mDatabaseReference.child("daily_item").child(itemNode).child("normal_orders").child(order.customerId!!).child(Utils.getRadomId().toString()).setValue(order)
                             callback.addOrderSucceed("Success Order!")
                         } else {
@@ -186,6 +187,7 @@ class BackendModel constructor(val context: Context) {
     }
 
     fun addTodaySpecialOrder(itemNode: String, order: OrderItemVO, callback: ModelCallback.AddOrderCallback) {
+        order.orderId=Utils.getRadomId().toString()
         mDatabaseReference.child("daily_item").child(itemNode).child("special_orders").child(order.customerId!!).child(Utils.getRadomId().toString()).setValue(order)
         callback.addOrderSucceed("Success Order!")
     }
@@ -224,6 +226,7 @@ class BackendModel constructor(val context: Context) {
 
     fun addUser(userVO: UserVO,callback : ModelCallback.LoginUserCallback){
         mDatabaseReference.child("user").child(userVO.userId.toString()).setValue(userVO)
+        callback.loginSucceed(userVO)
     }
 
     fun addTodaySpecialOrder(itemNode: String, order: OrderItemVO) {

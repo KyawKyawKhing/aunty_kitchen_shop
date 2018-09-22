@@ -9,7 +9,6 @@ import com.aceplus.hackthon.R;
 import com.aceplus.hackthon.adapter.TodayMenuRecyclerViewAdapter;
 import com.aceplus.shared.VO.AvailableItemVO;
 import com.aceplus.shared.VO.UserVO;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
 
@@ -23,7 +22,6 @@ public class TodayMenuActivity extends AppCompatActivity implements TodayMenuCon
     TodayMenuContract.Presenter presenter;
     TodayMenuRecyclerViewAdapter todayMenuRecyclerViewAdapter;
     private LinearLayoutManager mLayoutManager;
-    private DatabaseReference dref;
     private List<AvailableItemVO> itemList1;
 
     @Override

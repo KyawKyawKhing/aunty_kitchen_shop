@@ -12,4 +12,5 @@ class OrderItemVO {
     var customerDepartment: String? = null
     var itemPrice: String? = null
     var customerRemark: String? = null
+    var orderId: String? = null
 }

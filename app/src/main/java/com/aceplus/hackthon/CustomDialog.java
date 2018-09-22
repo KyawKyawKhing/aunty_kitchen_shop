@@ -67,8 +67,9 @@ public class CustomDialog extends Dialog {
 
     private OrderItemVO createOrderObject(){
         OrderItemVO orderItemVO = new OrderItemVO();
+        String[] seperated = userVO.getUserName().split("@");
         orderItemVO.setCustomerDepartment(userVO.getUserDepartment());
-        orderItemVO.setCustomerName(userVO.getUserName());
+        orderItemVO.setCustomerName(seperated[0]);
         orderItemVO.setCustomerId(userVO.getUserId());
         orderItemVO.setItemId(itemId);
         orderItemVO.setItemName(itemName);

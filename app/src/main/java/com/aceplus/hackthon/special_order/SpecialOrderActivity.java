@@ -132,7 +132,9 @@ public class SpecialOrderActivity extends AppCompatActivity implements SpecialOr
 
     @OnClick(R.id.btn_order)
     public void specialOrder() {
+
         presenter.addSpecialOrder(itemName, itemId, String.valueOf(itemPrice), txtDescription.getText().toString(), itemAmount);
+
 
     }
 }

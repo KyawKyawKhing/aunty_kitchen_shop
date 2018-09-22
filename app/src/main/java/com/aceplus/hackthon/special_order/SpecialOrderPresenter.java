@@ -54,12 +54,13 @@ public class SpecialOrderPresenter implements SpecialOrderContract.Presenter{
             public void loginSucceed(@NotNull UserVO userVO) {
 
                 OrderItemVO orderItemVO = new OrderItemVO();
+                String [] seperated = userVO.getUserName().split("@");
                 orderItemVO.setItemName(itemName);
                 orderItemVO.setItemId(itemId);
                 orderItemVO.setItemPrice(itemPrice);
                 orderItemVO.setItemCount(itemAmount);
                 orderItemVO.setCustomerRemark(remark);
-                orderItemVO.setCustomerName(userVO.getUserName());
+                orderItemVO.setCustomerName(seperated[0]);
                 orderItemVO.setCustomerDepartment(userVO.getUserDepartment());
                 orderItemVO.setCustomerId(userVO.getUserId());
                 BackendModel.Companion.getInstance().addTodaySpecialOrder(Utils.Companion.getTodayDateNode(), orderItemVO, new ModelCallback.AddOrderCallback() {

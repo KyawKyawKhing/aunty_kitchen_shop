@@ -8,7 +8,7 @@ import com.aceplus.shared.VO.UserVO;
 
 public class LoginContract {
 
-    interface View {
+    public interface View {
         void loginSuccess();
     }
 
