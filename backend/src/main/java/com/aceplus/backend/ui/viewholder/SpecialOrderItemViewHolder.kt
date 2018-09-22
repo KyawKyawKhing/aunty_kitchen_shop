@@ -11,11 +11,11 @@ class SpecialOrderItemViewHolder(itemView: View) : BaseViewHolder<OrderItemVO>(i
     override fun setData(data: OrderItemVO) {
         itemView.itemName.text = data.itemName
         itemView.itemPrice.text = data.itemPrice
-        itemView.itemCount.text = data.itemCount+" ပြဲ"
+        itemView.itemCount.text = data.itemCount + " ပြဲ"
         itemView.customerName.text = data.customerName
         itemView.customerDept.text = data.customerDepartment
         itemView.customerRemark.text = data.customerRemark
-        if (data.customerRemark!!.isEmpty()) {
+        if (data.customerRemark == null || data.customerRemark!!.isEmpty()) {
             itemView.remark.visibility = View.GONE
         } else {
             itemView.remark.visibility = View.VISIBLE

@@ -22,7 +22,8 @@
         <activity android:name=".ui.activity.AvailableItemAddActivity" />
         <activity android:name=".ui.activity.NormalItemListActivity" />
         <activity android:name=".ui.activity.TodayOrderListActivity" />
-        <activity android:name=".ui.activity.SpecialOrderActivity"></activity>
+        <activity android:name=".ui.activity.SpecialOrderActivity" />
+        <activity android:name=".ui.activity.ReportListActivity"></activity>
     </application>
 
 </manifest>

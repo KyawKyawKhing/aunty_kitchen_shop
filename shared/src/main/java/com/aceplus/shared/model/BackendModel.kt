@@ -363,13 +363,13 @@ class BackendModel constructor(val context: Context) {
                 for (ds in p0.children) {
                     for (dsChild in ds.child("normal_orders").children) {
                         for (order in dsChild.children) {
-                            orderList.add(dsChild.getValue(OrderItemVO::class.java)!!)
+                            orderList.add(order.getValue(OrderItemVO::class.java)!!)
                         }
                     }
 
                     for (dsChild in ds.child("special_orders").children) {
                         for (order in dsChild.children) {
-                            orderList.add(dsChild.getValue(OrderItemVO::class.java)!!)
+                            orderList.add(order.getValue(OrderItemVO::class.java)!!)
                         }
                     }
                 }
