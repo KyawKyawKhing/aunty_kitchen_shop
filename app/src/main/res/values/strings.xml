@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">Hackthon</string>
+    <string name="app_name">test</string>
+    <string name="back"><![CDATA[<< Back]]></string>
+    <string name="todayMenu">TODAY\'s MENU</string>
+    <string name="sign_in">Sign In</string>
+    <string name="dont_have_acc">Don`t Have Account Yet? <u>Register Now!</u></string>
+    <string name="reset_password">Reset Password</string>
+    <string name="ace_mail">\@aceplussolutions.com</string>
+    <string name="register">REGISTER</string>
+    <string name="special_order">Special Order</string>
+    <string name="Order">Order</string>
+    <string name="History">History</string>
 </resources>
