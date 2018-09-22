@@ -1,12 +1,17 @@
 package com.aceplus.hackthon.login;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.aceplus.hackthon.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,7 +22,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     @BindView(R.id.edt_resetPasswordEmail)
     EditText resetPasswordEmail;
-    //private FirebaseAuth auth;
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +32,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     private void init(){
         ButterKnife.bind(this);
-       // auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
     }
 
     @OnClick(R.id.btn_resetPassword)
@@ -40,7 +45,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
             return;
         }
 
-       /* auth.sendPasswordResetEmail(email)
+        auth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -52,7 +57,13 @@ public class ResetPasswordActivity extends AppCompatActivity {
                             Toast.makeText(ResetPasswordActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
                         }
                     }
-                });*/
+                });
 
+    }
+
+    @OnClick(R.id.backLayout)
+    public void goBack(){
+
+        onBackPressed();
     }
 }
