@@ -51,9 +51,7 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_spinner"
-                android:inputType="number"
-                android:padding="@dimen/margin_medium"
-                android:paddingStart="24dp" />
+                android:inputType="number" />
 
             <ImageView
                 android:id="@+id/ivItemEdit"
@@ -80,9 +78,7 @@
             android:layout_marginTop="@dimen/margin_large"
             android:layout_weight="1"
             android:background="@drawable/bg_spinner"
-            android:inputType="number"
-            android:padding="@dimen/margin_medium"
-            android:paddingStart="24dp" />
+            android:inputType="number"/>
 
         <Button
             android:id="@+id/btnAddAvailableItem"

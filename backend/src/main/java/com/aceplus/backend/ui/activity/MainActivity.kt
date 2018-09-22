@@ -5,6 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.aceplus.backend.R
+import com.aceplus.shared.VO.OrderItemVO
+import com.aceplus.shared.model.BackendModel
+import com.aceplus.shared.modelcallback.ModelCallback
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +22,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btnSell.setOnClickListener { startActivity(AvailableItemListActivity.newIntent(applicationContext)) }
-        btnTodayNormalOrder.setOnClickListener { }
-        btnSpecialOrder.setOnClickListener { }
+        btnTodayNormalOrder.setOnClickListener { startActivity(TodayOrderListActivity.newIntent(applicationContext)) }
+        btnSpecialOrder.setOnClickListener { startActivity(SpecialOrderActivity.newIntent(applicationContext)) }
+        btnOrderReport.setOnClickListener {
+            BackendModel.getInstance().displayOrderByDateByAdmin("22-09-2018", object : ModelCallback.GetOrderCallback {
+                override fun getDataFailed(message: String) {
+
+                }
+
+                override fun getDataSucceed(orderList: List<OrderItemVO>) {
+
+                }
+
+            })
+        }
     }
 }
