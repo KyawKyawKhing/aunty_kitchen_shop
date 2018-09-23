@@ -42,6 +42,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
     private DatePickerDialog picker;
     FirebaseAuth firebaseAuth;
     private Calendar now;
+    private String searchMonth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -105,14 +106,20 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
         dpd.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                int month = monthOfYear + 1;
-                String date = String.valueOf(dayOfMonth) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
-                String searchDate = String.valueOf(dayOfMonth) + "-" + String.valueOf(month) + "-" + String.valueOf(year);
+                String month = String.valueOf(monthOfYear + 1);
+                if (month.length() == 1){
+                     searchMonth = "0"+month;
+                }
+                String searchDate = String.valueOf(dayOfMonth) + "-" + String.valueOf(searchMonth) + "-" + String.valueOf(year);
+                String date = String.valueOf(dayOfMonth) + "-" + String.valueOf(searchMonth) + "-" + String.valueOf(year);
                 txtDate.setText(date);
                 historyPresenter.displayOrderByDateByUser(searchDate, firebaseAuth.getCurrentUser().getUid());
             }
         });
+
         dpd.show(getFragmentManager(), "Datepickerdialog");
+        dpd.setMaxDate(Calendar.getInstance());
+
 
 
     }

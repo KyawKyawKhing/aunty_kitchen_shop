@@ -45,42 +45,33 @@ public class HistoryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == VIEW_TYPE_LOADING) {
-         /*   final View view = LayoutInflater.from(context).inflate(R.layout.more_recommend_loading_view_layout,
+       /* if (viewType == VIEW_TYPE_LOADING) {
+            final View view = LayoutInflater.from(context).inflate(R.layout.no_order_layout,
                     parent, false);
-            return new LoadingViewHolder(view);*/
-        }
-        final View view = LayoutInflater.from(context).inflate(R.layout.special_order_listitem,
-                parent, false);
+            return new LoadingViewHolder(view);
+        } else {
 
+        } */final View view = LayoutInflater.from(context).inflate(R.layout.special_order_listitem,
+                parent, false);
         return new OrderViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        if (holder instanceof OrderViewHolder) {
+        if (holder.getItemViewType() == VIEW_TYPE_CONTENT) {
 
             ((OrderViewHolder) holder).itemName.setText(itemList.get(position).getItemName());
             ((OrderViewHolder) holder).itemPrice.setText(itemList.get(position).getItemPrice());
             ((OrderViewHolder) holder).customerRemark.setText(itemList.get(position).getCustomerRemark());
+            ((OrderViewHolder) holder).itemCount.setText(itemList.get(position).getItemCount() + "ပြဲ");
 
             if (itemList.get(position).getCustomerRemark().isEmpty()) {
                 ((OrderViewHolder) holder).remark.setVisibility(View.GONE);
             } else {
                 ((OrderViewHolder) holder).remark.setVisibility(View.VISIBLE);
             }
-        } else if (holder instanceof LoadingViewHolder) {
-           /* if (position >= totalSize && totalSize > 0) {
-                ((LoadingViewHolder) holder).llProgressLoading.setVisibility(View.GONE);
-                ((LoadingViewHolder) holder).listProgress.setVisibility(View.GONE);
-                Log.d("Position greter", position + "");
-            } else {
-                ((LoadingViewHolder) holder).llProgressLoading.setVisibility(View.VISIBLE);
-                ((LoadingViewHolder) holder).listProgress.setVisibility(View.VISIBLE);
-                Log.d("Position", position + "");
-            }
-            Log.d("Position", "totalsize" + totalSize);
-        }*/
+        } else if (holder.getItemViewType() == VIEW_TYPE_LOADING) {
+           // ((TodayMenuRecyclerViewAdapter.LoadingViewHolder) holder).cantOrderLayout.setVisibility(View.VISIBLE);
         }
 
     }
@@ -88,8 +79,8 @@ public class HistoryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        //return (position >= movieList.size()) ? VIEW_TYPE_LOADING : VIEW_TYPE_CONTENT;
-        return VIEW_TYPE_CONTENT;
+        //return position == 0 ? VIEW_TYPE_LOADING : VIEW_TYPE_CONTENT;
+        return position;
     }
 
     @Override
@@ -101,7 +92,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public int getItemCount() {
         //return movieList == null ? 0 : movieList.size() + 1;
-        return itemList == null ? 0 : itemList.size();
+        return itemList == null? 0 : itemList.size();
     }
 
 
@@ -115,6 +106,8 @@ public class HistoryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         TextView customerRemark;
         @BindView(R.id.remark)
         LinearLayout remark;
+        @BindView(R.id.itemCount)
+        TextView itemCount;
 
         public OrderViewHolder(View itemView) {
             super(itemView);
@@ -124,11 +117,15 @@ public class HistoryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    public class LoadingViewHolder extends RecyclerView.ViewHolder {
+  /*  public class LoadingViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.noOrderLayout)
+        LinearLayout noOrderLayout;
         public LoadingViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
-        /*@BindView(R.id.llProgressLoading)
+        *//*@BindView(R.id.llProgressLoading)
         LinearLayout llProgressLoading;
         @BindView(R.id.listProgress)
         ProgressBar listProgress;
@@ -138,6 +135,6 @@ public class HistoryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public LoadingViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-        }*/
-    }
+        }*//*
+    }*/
 }

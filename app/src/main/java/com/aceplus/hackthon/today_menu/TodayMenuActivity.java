@@ -20,6 +20,8 @@ import butterknife.OnClick;
 
 public class TodayMenuActivity extends AppCompatActivity implements TodayMenuContract.View {
 
+    @BindView(R.id.cantOrderLayout)
+    LinearLayout cantOrderLayout;
     @BindView(R.id.progressLoading)
     LinearLayout progressLoading;
     @BindView(R.id.todayMenu_rcv)
@@ -44,6 +46,17 @@ public class TodayMenuActivity extends AppCompatActivity implements TodayMenuCon
         presenter.getUser();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+            if (itemList1 != null) {
+                cantOrderLayout.setVisibility(View.GONE);
+            } else {
+                cantOrderLayout.setVisibility(View.VISIBLE);
+            }
+    }
+
     @OnClick(R.id.imgBack)
     public void goBack() {
         onBackPressed();
@@ -59,8 +72,15 @@ public class TodayMenuActivity extends AppCompatActivity implements TodayMenuCon
 
     @Override
     public void displayTodayAvailableItem(List<AvailableItemVO> itemList) {
-        this.itemList1 = itemList;
-        todayMenuRecyclerViewAdapter.setTodayMenuList(itemList1);
+
+        if (itemList.size() != 0 ){
+            cantOrderLayout.setVisibility(View.GONE);
+            this.itemList1 = itemList;
+            todayMenuRecyclerViewAdapter.setTodayMenuList(itemList1);
+        }else{
+            cantOrderLayout.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override

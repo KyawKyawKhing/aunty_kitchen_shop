@@ -37,7 +37,7 @@ public class CustomDialog extends Dialog {
     TextView txtItemAmount;
     @BindView(R.id.txtDescription)
     EditText remarkText;
-    int itemAmount = 0;
+    int itemAmount = 1;
     public Activity context;
     public Button btnConfirm;
 
@@ -59,7 +59,7 @@ public class CustomDialog extends Dialog {
         setContentView(R.layout.custom_dialog);
         ButterKnife.bind(this);
         btnConfirm = (Button) findViewById(R.id.btn_confirm);
-        txtItemAmount.setText("0");
+        txtItemAmount.setText(String.valueOf(itemAmount));
         txtItemName.setText(itemName);
 
 
@@ -94,7 +94,7 @@ public class CustomDialog extends Dialog {
 
     @OnClick(R.id.txtMinus)
     public void doDecrease() {
-        if (itemAmount > 0) {
+        if (itemAmount > 1) {
             --itemAmount;
             txtItemAmount.setText(String.valueOf(itemAmount));
         }

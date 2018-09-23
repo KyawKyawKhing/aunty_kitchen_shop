@@ -41,7 +41,9 @@
             android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
-
-        <include layout="@layout/progress_loading_layout" />
     </LinearLayout>
+
+    <include layout="@layout/progress_loading_layout" />
+    <include layout="@layout/cant_order_layout" />
+
 </RelativeLayout>
