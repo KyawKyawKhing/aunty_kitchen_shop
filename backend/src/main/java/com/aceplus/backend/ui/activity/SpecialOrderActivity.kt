@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
-import android.widget.Toast
 import com.aceplus.backend.R
 import com.aceplus.backend.ui.adapter.SpecialOrderItemAdapter
 import com.aceplus.shared.VO.OrderItemVO
@@ -48,32 +47,37 @@ class SpecialOrderActivity : AppCompatActivity(), SpecialOrderListView {
             btnTomorrowOrder.setBackgroundResource(R.drawable.bg_tab_right_default)
             rvTodayOrderItem.visibility = View.VISIBLE
             rvTomorrowOrderItem.visibility = View.GONE
+            emptyOrderView.visibility = View.GONE
             if (mTodayAdapter.getList().isEmpty())
                 emptyBuyView.visibility = View.VISIBLE
             else
-                emptyOrderView.visibility = View.GONE
+                emptyBuyView.visibility = View.GONE
         }
         btnTomorrowOrder.setOnClickListener {
             btnTodayOrder.setBackgroundResource(R.drawable.bg_tab_left_default)
             btnTomorrowOrder.setBackgroundResource(R.drawable.bg_tab_right_selected)
             rvTodayOrderItem.visibility = View.GONE
             rvTomorrowOrderItem.visibility = View.VISIBLE
+            emptyBuyView.visibility = View.GONE
             if (mTomorrowAdapter.getList().isEmpty())
                 emptyOrderView.visibility = View.VISIBLE
             else
-                emptyBuyView.visibility = View.GONE
+                emptyOrderView.visibility = View.GONE
         }
     }
 
     override fun displayMessage(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun displayTodayOrderItemList(itemList: List<OrderItemVO>) {
-        if (itemList.isEmpty())
+        if (itemList.isEmpty()) {
             emptyBuyView.visibility = View.VISIBLE
-        else
+            emptyOrderView.visibility = View.GONE
+        } else {
             emptyBuyView.visibility = View.GONE
+            emptyOrderView.visibility = View.GONE
+        }
         mTodayAdapter.setNewList(itemList as MutableList<OrderItemVO>)
     }
 

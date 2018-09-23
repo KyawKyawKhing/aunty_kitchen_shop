@@ -1,5 +1,6 @@
 package mvp.view
 
+import android.view.View
 import com.aceplus.shared.VO.OrderItemVO
 
 /**
@@ -7,4 +8,5 @@ import com.aceplus.shared.VO.OrderItemVO
  */
 interface OrderListView : BaseView {
     fun displayOrderItemList(itemList: List<OrderItemVO>)
+    fun getView(): View
 }

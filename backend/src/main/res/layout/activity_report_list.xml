@@ -16,18 +16,18 @@
 
         <ImageView
             android:id="@+id/backButton"
-            android:layout_width="40dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="24dp"
+            android:paddingEnd="32dp"
             android:src="@drawable/ic_keyboard_backspace_white_24dp" />
 
         <TextView
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Food Item List"
+            android:text="@string/title_total_report"
             android:textColor="@color/colorWhite"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <RelativeLayout

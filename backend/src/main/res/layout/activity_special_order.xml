@@ -17,16 +17,16 @@
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingEnd="32dp"
             android:src="@drawable/ic_keyboard_backspace_white_24dp" />
 
         <TextView
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:text="Food Item List"
+            android:text="@string/title_special_order"
             android:textColor="@color/colorWhite"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
     </android.support.v7.widget.Toolbar>
 

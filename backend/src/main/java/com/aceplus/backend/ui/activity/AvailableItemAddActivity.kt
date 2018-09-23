@@ -54,9 +54,12 @@ class AvailableItemAddActivity : AppCompatActivity(), AvailableItemAddView {
             }
         }
         btnAddAvailableItem.setOnClickListener {
-            val itemVO = itemList[spItemName.selectedItemPosition]
-            itemVO.itemCount = itemCountList[spItemCount.selectedItemPosition].toLong()
-            mPresenter.addTodayAvailableItem(itemVO)
+            if (spItemName.selectedItemPosition >= 0) {
+                val itemVO = itemList[spItemName.selectedItemPosition]
+                itemVO.itemCount = itemCountList[spItemCount.selectedItemPosition].toLong()
+                mPresenter.addTodayAvailableItem(itemVO)
+            } else
+                Toast.makeText(applicationContext, "အသစ္ထည့္ရန္ ပစၥည္းမရွိပါ", Toast.LENGTH_SHORT).show()
         }
     }
 

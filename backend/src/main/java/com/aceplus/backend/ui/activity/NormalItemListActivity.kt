@@ -7,7 +7,6 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
-import android.widget.Toast
 import com.aceplus.backend.R
 import com.aceplus.backend.Util.Utils
 import com.aceplus.backend.ui.adapter.NormalItemAdapter
@@ -47,7 +46,7 @@ class NormalItemListActivity : AppCompatActivity(), NormalItemListView {
         val alertDialog = alert.create()
         alertDialog.show()
         alertDialog.btnItemAdd.setOnClickListener {
-            if (alertDialog.itemName.text.toString().isNotEmpty() || alertDialog.itemPrice.text.toString().isNotEmpty()) {
+            if (alertDialog.itemName.text.isNotEmpty() && alertDialog.itemPrice.text.isNotEmpty()) {
                 val itemVO = AvailableItemVO()
                 itemVO.itemId = Utils.getRadomId()
                 itemVO.itemName = alertDialog.itemName.text.toString()
@@ -57,13 +56,13 @@ class NormalItemListActivity : AppCompatActivity(), NormalItemListView {
             } else if (alertDialog.itemName.text.isEmpty()) {
                 alertDialog.itemName.error = "အမည္ထည့္ပါ"
             } else if (alertDialog.itemPrice.text.isEmpty()) {
-                alertDialog.itemPrice.error = ""
+                alertDialog.itemPrice.error = "ေစ်းနႈန္းထည့္ပါ"
             }
         }
     }
 
     override fun displayMessage(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun displayNormalItemList(itemList: List<AvailableItemVO>) {
