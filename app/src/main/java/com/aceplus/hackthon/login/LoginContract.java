@@ -10,6 +10,8 @@ public class LoginContract {
 
     public interface View {
         void loginSuccess();
+
+        void showLoading(boolean active);
     }
 
     interface Presenter{

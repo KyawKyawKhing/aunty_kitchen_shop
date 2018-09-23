@@ -26,15 +26,17 @@ public class SpecialOrderPresenter implements SpecialOrderContract.Presenter{
 
     @Override
     public void displaySpecialAllItem() {
+        view.setLoading(true);
         BackendModel.Companion.getInstance().displaySpecialAllItem(new ModelCallback.GetAllItemCallback() {
 
             @Override
             public void getDataFailed(@NotNull String message) {
-
+                view.setLoading(false);
             }
 
             @Override
             public void getDataSucceed(@NotNull List<AvailableItemVO> itemList) {
+                view.setLoading(false);
                 view.showTodayNormalOrder(itemList);
 
             }
@@ -43,16 +45,17 @@ public class SpecialOrderPresenter implements SpecialOrderContract.Presenter{
 
     @Override
     public void addSpecialOrder(final String itemName, final String itemId, final String itemPrice, final String remark, final String itemAmount) {
+        view.setLoading(true);
         BackendModel.Companion.getInstance().getUser(new ModelCallback.LoginUserCallback() {
 
             @Override
             public void loginFailed(@NotNull String message) {
-
+                view.setLoading(false);
             }
 
             @Override
             public void loginSucceed(@NotNull UserVO userVO) {
-
+                view.setLoading(false);
                 OrderItemVO orderItemVO = new OrderItemVO();
                 String [] seperated = userVO.getUserName().split("@");
                 orderItemVO.setItemName(itemName);

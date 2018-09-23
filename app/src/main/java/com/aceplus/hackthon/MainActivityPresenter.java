@@ -22,15 +22,18 @@ public class MainActivityPresenter implements MainActivityContract.Presenter {
 
     @Override
     public void getUser() {
+        view.setLoading(true);
         BackendModel.Companion.getInstance().getUser(new ModelCallback.LoginUserCallback() {
             @Override
             public void loginSucceed(@NotNull UserVO userVO) {
+                view.setLoading(false);
                 view.showUser(userVO);
+
             }
 
             @Override
             public void loginFailed(@NotNull String message) {
-
+                view.setLoading(false);
             }
         });
     }

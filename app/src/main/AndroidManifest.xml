@@ -39,6 +39,7 @@
         <activity android:name=".today_menu.TodayMenuActivity" />
         <activity android:name=".special_order.SpecialOrderActivity" />
         <activity android:name=".history.HistoryActivity"/>
+        <activity android:name=".shoplist.ShopListActivity"/>
     </application>
 
 </manifest>

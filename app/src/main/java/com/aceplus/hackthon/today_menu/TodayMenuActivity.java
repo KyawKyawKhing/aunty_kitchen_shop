@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.aceplus.hackthon.R;
 import com.aceplus.hackthon.adapter.TodayMenuRecyclerViewAdapter;
@@ -15,8 +17,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 public class TodayMenuActivity extends AppCompatActivity implements TodayMenuContract.View {
 
+    @BindView(R.id.progressLoading)
+    LinearLayout progressLoading;
     @BindView(R.id.todayMenu_rcv)
     RecyclerView rcv_TodayMenu;
     TodayMenuContract.Presenter presenter;
@@ -61,5 +66,15 @@ public class TodayMenuActivity extends AppCompatActivity implements TodayMenuCon
     @Override
     public void showUser(UserVO userVO) {
         todayMenuRecyclerViewAdapter.setUserVo(userVO);
+    }
+
+    @Override
+    public void setLoading(boolean active) {
+        if (active) {
+            progressLoading.setVisibility(View.VISIBLE);
+        } else {
+
+            progressLoading.setVisibility(View.GONE);
+        }
     }
 }

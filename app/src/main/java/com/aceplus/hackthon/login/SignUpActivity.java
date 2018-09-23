@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,6 +30,9 @@ import butterknife.OnClick;
 
 public class SignUpActivity extends AppCompatActivity implements LoginContract.View {
 
+
+    @BindView(R.id.progressLoading)
+    LinearLayout progressLoading;
     @BindView(R.id.sp_department)
     Spinner spDepartment;
     @BindView(R.id.edt_signUpEmail)
@@ -116,5 +121,14 @@ public class SignUpActivity extends AppCompatActivity implements LoginContract.V
     @Override
     public void loginSuccess() {
         Toast.makeText(getApplicationContext(), "Register Successful!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoading(boolean active) {
+        if (active){
+            progressLoading.setVisibility(View.VISIBLE);
+        }else {
+            progressLoading.setVisibility(View.GONE);
+        }
     }
 }

@@ -12,6 +12,8 @@ public class SpecialOrderContract {
 
     interface View {
 
+        void setLoading(boolean active);
+
         void showTodayNormalOrder(List<AvailableItemVO> orderList);
 
         void showSuccessfulOrder();

@@ -20,16 +20,16 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void addUser(UserVO userVO) {
-
+        view.showLoading(true);
         BackendModel.Companion.getInstance().addUser(userVO, new ModelCallback.LoginUserCallback() {
             @Override
             public void loginFailed(@NotNull String message) {
-
+                view.showLoading(false);
             }
 
             @Override
             public void loginSucceed(@NotNull UserVO userVO) {
-
+                view.showLoading(false);
             }
         });
     }
