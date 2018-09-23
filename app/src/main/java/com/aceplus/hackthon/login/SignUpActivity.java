@@ -59,15 +59,19 @@ public class SignUpActivity extends AppCompatActivity implements LoginContract.V
 
     private void setUpDepartmentSpinner(){
 
-        List<String> list = new ArrayList<String>();
-        list.add("HVC");
-        list.add("Local");
-        list.add("TAT");
+        List<String> team = new ArrayList<String>();
+        team.add("ARK");
+        team.add("B2B");
+        team.add("B2C");
+        team.add("Hivelocity");
+        team.add("Management");
+        team.add("Support Team");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 R.layout.custom_spinner,
-                list);
+                team);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spDepartment.setAdapter(dataAdapter);
+
     }
 
     @OnClick(R.id.imgBack)
