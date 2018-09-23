@@ -78,6 +78,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
 
         } else {
             noOrderLayout.setVisibility(View.VISIBLE);
+            historyListAdapter.setReportList(null);
         }
 
     }
@@ -91,6 +92,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
 
         } else {
             noOrderLayout.setVisibility(View.VISIBLE);
+            historyListAdapter.setReportList(null);
         }
     }
 

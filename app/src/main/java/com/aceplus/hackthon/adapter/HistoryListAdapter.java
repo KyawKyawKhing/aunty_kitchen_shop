@@ -80,7 +80,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public int getItemViewType(int position) {
         //return position == 0 ? VIEW_TYPE_LOADING : VIEW_TYPE_CONTENT;
-        return position;
+        return VIEW_TYPE_CONTENT;
     }
 
     @Override

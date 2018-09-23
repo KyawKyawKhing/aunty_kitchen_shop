@@ -15,10 +15,13 @@ class SpecialOrderItemViewHolder(itemView: View) : BaseViewHolder<OrderItemVO>(i
         itemView.customerName.text = data.customerName
         itemView.customerDept.text = data.customerDepartment
         itemView.customerRemark.text = data.customerRemark
+
         if (data.customerRemark == null || data.customerRemark!!.isEmpty()) {
             itemView.remark.visibility = View.GONE
+            itemView.underview.visibility = View.GONE
         } else {
             itemView.remark.visibility = View.VISIBLE
+            itemView.underview.visibility = View.VISIBLE
         }
     }
 
