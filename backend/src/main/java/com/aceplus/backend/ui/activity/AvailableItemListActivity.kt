@@ -17,7 +17,7 @@ import mvp.view.AvailableItemListView
 
 class AvailableItemListActivity : AppCompatActivity(), AvailableItemListView {
     override fun displayMessage(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
     private lateinit var mPresenter: AvailableItemListPresenter

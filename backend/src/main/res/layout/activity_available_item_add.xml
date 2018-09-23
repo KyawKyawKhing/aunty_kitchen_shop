@@ -18,16 +18,16 @@
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingEnd="32dp"
             android:src="@drawable/ic_keyboard_backspace_white_24dp" />
 
         <TextView
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:text="Food Item List"
+            android:text="@string/add_item_new"
             android:textColor="@color/colorWhite"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
     </android.support.v7.widget.Toolbar>
 
@@ -78,7 +78,7 @@
             android:layout_marginTop="@dimen/margin_large"
             android:layout_weight="1"
             android:background="@drawable/bg_spinner"
-            android:inputType="number"/>
+            android:inputType="number" />
 
         <Button
             android:id="@+id/btnAddAvailableItem"

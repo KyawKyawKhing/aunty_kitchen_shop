@@ -14,11 +14,13 @@ class OrderListPresenter(view: OrderListView) : BasePresenter<OrderListView>(vie
     fun displayOrderList() {
         BackendModel.getInstance().displayTodayNormalOrder(Utils.getTodayDateNode(), object : ModelCallback.GetOrderCallback {
             override fun getDataSucceed(orderList: List<OrderItemVO>) {
-                mView.displayOrderItemList(orderList)
+//                if (mView.getView() != null) {
+                    mView.displayOrderItemList(orderList)
+//                }
             }
 
             override fun getDataFailed(message: String) {
-                mView.displayMessage(message)
+//                mView.displayMessage(message)
             }
 
         })

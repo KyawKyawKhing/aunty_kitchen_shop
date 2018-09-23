@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.*
+import java.util.*
 
 /**
  * Created by kkk on 9/21/2018.
@@ -126,12 +127,20 @@ class BackendModel constructor(val context: Context) {
 
             override fun onDataChange(p0: DataSnapshot) {
                 val orderList = mutableListOf<OrderItemVO>()
-                for (ds in p0.children) {
-                    for (dsChild in ds.children) {
-                        orderList.add(dsChild.getValue(OrderItemVO::class.java)!!)
+                if (p0.hasChildren()) {
+                    for (ds in p0.children) {
+                        if (ds.hasChildren()) {
+                            for (dsChild in ds.children) {
+                                if (ds.value != null) {
+                                    orderList.add(dsChild.getValue(OrderItemVO::class.java)!!)
+                                }
+                            }
+                        }
                     }
+                    Collections.reverse(orderList)
                 }
                 callback.getDataSucceed(orderList)
+
             }
 
         })
@@ -150,6 +159,7 @@ class BackendModel constructor(val context: Context) {
                         orderList.add(dsChild.getValue(OrderItemVO::class.java)!!)
                     }
                 }
+                Collections.reverse(orderList)
                 callback.getDataSucceed(orderList)
             }
 
@@ -165,6 +175,7 @@ class BackendModel constructor(val context: Context) {
 
             override fun onDataChange(p0: DataSnapshot) {
                 val itemList = p0.children.map { it.getValue(AvailableItemVO::class.java)!! }
+                Collections.reverse(itemList)
                 callback.getDataSucceed(itemList)
             }
 
@@ -186,7 +197,7 @@ class BackendModel constructor(val context: Context) {
                         if (count >= 0) {
                             itemVO.itemCount = count
                             mDatabaseReference.child("daily_item").child(itemNode).child("available_item").child(order.itemId!!).setValue(itemVO)
-                            order.orderId=Utils.getRadomId().toString()
+                            order.orderId = Utils.getRadomId().toString()
                             mDatabaseReference.child("daily_item").child(itemNode).child("normal_orders").child(order.customerId!!).child(Utils.getRadomId().toString()).setValue(order)
                             callback.addOrderSucceed("Success Order!")
                         } else {
@@ -200,7 +211,7 @@ class BackendModel constructor(val context: Context) {
     }
 
     fun addTodaySpecialOrder(itemNode: String, order: OrderItemVO, callback: ModelCallback.AddOrderCallback) {
-        order.orderId=Utils.getRadomId().toString()
+        order.orderId = Utils.getRadomId().toString()
         mDatabaseReference.child("daily_item").child(itemNode).child("special_orders").child(order.customerId!!).child(Utils.getRadomId().toString()).setValue(order)
         callback.addOrderSucceed("Success Order!")
     }
@@ -213,14 +224,15 @@ class BackendModel constructor(val context: Context) {
 
             override fun onDataChange(p0: DataSnapshot) {
                 val itemList = p0.children.map { it.getValue(AvailableItemVO::class.java)!! }
+                Collections.reverse(itemList)
                 callback.getDataSucceed(itemList)
             }
 
         })
     }
 
-    fun getUser(callback: ModelCallback.LoginUserCallback){
-        mDatabaseReference.child("user").child(mFirebaseAuth!!.currentUser!!.uid).addValueEventListener(object : ValueEventListener{
+    fun getUser(callback: ModelCallback.LoginUserCallback) {
+        mDatabaseReference.child("user").child(mFirebaseAuth!!.currentUser!!.uid).addValueEventListener(object : ValueEventListener {
 
             override fun onCancelled(p0: DatabaseError) {
                 callback.loginFailed("Failed")
@@ -237,7 +249,7 @@ class BackendModel constructor(val context: Context) {
         })
     }
 
-    fun addUser(userVO: UserVO,callback : ModelCallback.LoginUserCallback){
+    fun addUser(userVO: UserVO, callback: ModelCallback.LoginUserCallback) {
         mDatabaseReference.child("user").child(userVO.userId.toString()).setValue(userVO)
         callback.loginSucceed(userVO);
     }
@@ -254,6 +266,7 @@ class BackendModel constructor(val context: Context) {
 
             override fun onDataChange(p0: DataSnapshot) {
                 val itemList = p0.children.map { it.getValue(AvailableItemVO::class.java)!! }
+                Collections.reverse(itemList)
                 callback.getDataSucceed(itemList)
             }
 
@@ -285,7 +298,7 @@ class BackendModel constructor(val context: Context) {
     fun changeSentOrder(itemNode: String, orderItemVO: OrderItemVO) {
         mDatabaseReference.child("daily_item").child(itemNode).child("normal_orders").child(orderItemVO.customerId!!).child(orderItemVO.orderId!!).setValue(orderItemVO)
     }
-    
+
     fun displayAllOrderByUser(userId: String, callback: ModelCallback.GetOrderCallback) {
         mDatabaseReference.child("daily_item").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -302,6 +315,7 @@ class BackendModel constructor(val context: Context) {
                         orderList.add(dsChild.getValue(OrderItemVO::class.java)!!)
                     }
                 }
+                Collections.reverse(orderList)
                 callback.getDataSucceed(orderList)
             }
 
@@ -322,6 +336,7 @@ class BackendModel constructor(val context: Context) {
                 for (normalOrder in p0.child("special_orders").child(userId).children) {
                     orderList.add(normalOrder.getValue(OrderItemVO::class.java)!!)
                 }
+                Collections.reverse(orderList)
                 callback.getDataSucceed(orderList)
             }
 
@@ -346,6 +361,7 @@ class BackendModel constructor(val context: Context) {
                         orderList.add(ds.getValue(OrderItemVO::class.java)!!)
                     }
                 }
+                Collections.reverse(orderList)
                 callback.getDataSucceed(orderList)
             }
 
@@ -363,16 +379,17 @@ class BackendModel constructor(val context: Context) {
                 for (ds in p0.children) {
                     for (dsChild in ds.child("normal_orders").children) {
                         for (order in dsChild.children) {
-                            orderList.add(dsChild.getValue(OrderItemVO::class.java)!!)
+                            orderList.add(order.getValue(OrderItemVO::class.java)!!)
                         }
                     }
 
                     for (dsChild in ds.child("special_orders").children) {
                         for (order in dsChild.children) {
-                            orderList.add(dsChild.getValue(OrderItemVO::class.java)!!)
+                            orderList.add(order.getValue(OrderItemVO::class.java)!!)
                         }
                     }
                 }
+                Collections.reverse(orderList)
                 callback.getDataSucceed(orderList)
             }
 

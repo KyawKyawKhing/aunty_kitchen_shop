@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_bg"
-    tools:context="com.aceplus.backend.ui.activity.AvailableItemListActivity">
+    tools:context="com.aceplus.backend.ui.activity.ReportListActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -25,14 +25,47 @@
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_sell_item"
+            android:text="@string/title_total_report"
             android:textColor="@color/colorWhite"
             android:textSize="24sp"
             android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="center_vertical"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/filterDate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/calendarIcon"
+                android:gravity="center_vertical"
+                android:text="All"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/calendarIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/calendar"
+                android:contentDescription="Calendar"
+                android:gravity="center_vertical"
+                android:scaleType="fitXY" />
+
+        </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvItemList"
+        android:id="@+id/rvReportList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
@@ -43,14 +76,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/empty_itemview" />
+        android:src="@drawable/empty_report" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabAddItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_add_white_24dp" />
 </RelativeLayout>

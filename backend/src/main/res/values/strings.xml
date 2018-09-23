@@ -11,5 +11,8 @@
     <string name="today_order">ေစ်း၀ယ္ရန္</string>
     <string name="tomorrow_order">မနက္ျဖန္ အမွာစာရင္း</string>
     <string name="sent_order">ပို႕ျပီး</string>
-    <string name="report">အေရာင္းစာရင္း အနွစ္ခ်ဴပ္</string>
+    <string name="title_total_report">အေရာင္းစာရင္း အနွစ္ခ်ဳပ္</string>
+    <string name="title_sell_item">ေစ်းေရာင္းမယ္</string>
+    <string name="title_today_order">ဒီေန႕အမွာစာရင္း</string>
+    <string name="title_special_order">ၾကိဳတင္ အမွာစာရင္း</string>
 </resources>

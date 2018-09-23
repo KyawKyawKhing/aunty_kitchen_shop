@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     override fun displayMessage(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
 }

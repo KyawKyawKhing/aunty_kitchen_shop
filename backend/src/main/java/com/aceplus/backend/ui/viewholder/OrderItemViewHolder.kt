@@ -12,9 +12,12 @@ import kotlinx.android.synthetic.main.order_listitem.view.*
  */
 class OrderItemViewHolder(itemView: View, val delegate: OrderItemDelegate) : BaseViewHolder<OrderItemVO>(itemView) {
     override fun setData(data: OrderItemVO) {
-        if (data.isSentOrder != "1") {
+        if (data.isSentOrder == "1") {
+            itemView.visibility = View.GONE
+            itemView.layoutParams = RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, 1)
+        } else {
             itemView.visibility = View.VISIBLE
-            itemView.layoutParams = RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, 220)
+            itemView.layoutParams = RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, 240)
             val params = itemView.layoutParams as ViewGroup.MarginLayoutParams
             params.setMargins(16, 16, 16, 16)
             itemView.layoutParams = params
@@ -25,7 +28,7 @@ class OrderItemViewHolder(itemView: View, val delegate: OrderItemDelegate) : Bas
             itemView.customerName.text = data.customerName
             itemView.customerDept.text = data.customerDepartment
             itemView.customerRemark.text = data.customerRemark
-            if (data.customerRemark!!.isEmpty()) {
+            if (data.customerRemark != null && data.customerRemark!!.isEmpty()) {
                 itemView.remark.visibility = View.GONE
             } else {
                 itemView.remark.visibility = View.VISIBLE
@@ -34,9 +37,6 @@ class OrderItemViewHolder(itemView: View, val delegate: OrderItemDelegate) : Bas
                 data.isSentOrder = "1"
                 delegate.onTapSentOrder(data)
             }
-        } else {
-            itemView.visibility = View.GONE
-            itemView.layoutParams = RecyclerView.LayoutParams(0, 0)
         }
     }
 
