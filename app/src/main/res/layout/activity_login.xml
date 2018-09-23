@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_bg"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context="com.aceplus.hackthon.login.LoginActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -30,6 +33,9 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/edit_text_border_white_line"
         android:hint="User name"
+        android:imeOptions="actionNext"
+        android:maxLines="1"
+        android:singleLine="true"
         android:paddingLeft="20dp"
         android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorWhite" />
@@ -40,6 +46,9 @@
         android:layout_width="300dp"
         android:layout_height="45dp"
         android:layout_marginTop="15dp"
+        android:imeOptions="actionNext"
+        android:maxLines="1"
+        android:singleLine="true"
         android:background="@drawable/edit_text_border_white_line"
         android:hint="Password"
         android:inputType="textPassword"
@@ -58,12 +67,12 @@
         android:textSize="12sp"
         android:textStyle="bold" />
 
-    <TextView
+    <Button
         android:id="@+id/btn_login"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/sign_in_rectangle"
+        android:background="@drawable/button"
         android:gravity="center"
         android:text="@string/sign_in"
         android:textColor="@color/colorWhite"
@@ -158,4 +167,7 @@
 
         </LinearLayout>-->
 
-</LinearLayout>
+
+    </LinearLayout>
+    <include layout="@layout/progress_loading_layout" />
+</RelativeLayout>

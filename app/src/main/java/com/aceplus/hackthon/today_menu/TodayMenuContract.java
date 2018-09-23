@@ -17,6 +17,8 @@ public class TodayMenuContract {
         void displayTodayAvailableItem(List<AvailableItemVO> itemList);
 
         void showUser(UserVO userVO);
+
+        void setLoading(boolean active);
     }
 
     interface Presenter {

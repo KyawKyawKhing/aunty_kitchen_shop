@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.aceplus.hackthon.MainActivity;
@@ -25,6 +27,8 @@ import butterknife.Optional;
 
 public class LoginActivity extends AppCompatActivity{
 
+    @BindView(R.id.progressLoading)
+    LinearLayout progressBar;
     @BindView(R.id.edt_email)
     EditText edtEmail;
     @BindView(R.id.edt_password)
@@ -55,7 +59,7 @@ public class LoginActivity extends AppCompatActivity{
     @OnClick(R.id.btn_login)
     public void goToLogin() {
 
-        final String email = edtEmail.getText().toString()+ "@aceplussolutions.com";
+        final String email = edtEmail.getText().toString();
         final String password = edtPassword.getText().toString();
 
         if (TextUtils.isEmpty(email)) {
@@ -72,18 +76,21 @@ public class LoginActivity extends AppCompatActivity{
             Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        auth.signInWithEmailAndPassword(email, password)
+        progressBar.setVisibility(View.VISIBLE);
+        String finalEmail = email+ "@aceplussolutions.com";
+        auth.signInWithEmailAndPassword(finalEmail, password)
                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
+                            progressBar.setVisibility(View.GONE);
                             if (password.length() < 6) {
                                 edtPassword.setError("Password too short, enter minimum 6 characters!");
                             } else {
                                 Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_LONG).show();
                             }
                         } else {
+                            progressBar.setVisibility(View.GONE);
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();

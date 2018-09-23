@@ -6,6 +6,7 @@
     <color name="colorGreen">#62c119</color>
     <color name="colorGrey">#838383</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorBlackTra">#9f000000</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorOrange">#F5A623</color>

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,6 +26,9 @@ import butterknife.OnClick;
 
 public class SpecialOrderActivity extends AppCompatActivity implements SpecialOrderContract.View {
 
+
+    @BindView(R.id.progressLoading)
+    LinearLayout progressLoading;
     @BindView(R.id.sp_menuItem)
     Spinner spMenuItem;
     @BindView(R.id.sp_amount)
@@ -114,13 +118,24 @@ public class SpecialOrderActivity extends AppCompatActivity implements SpecialOr
     }
 
     @Override
+    public void setLoading(boolean active) {
+        if (active) {
+
+            progressLoading.setVisibility(View.VISIBLE);
+
+        } else {
+            progressLoading.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
     public void showTodayNormalOrder(List<AvailableItemVO> orderList) {
         setUpMenuItemSpinner(orderList);
     }
 
     @Override
     public void showSuccessfulOrder() {
-       finish();
+        finish();
     }
 
 

@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 import com.aceplus.hackthon.R;
 import com.aceplus.hackthon.Utils.Utils;
+import com.aceplus.hackthon.history.HistoryActivity;
+import com.aceplus.hackthon.shoplist.ShopListActivity;
 import com.aceplus.hackthon.special_order.SpecialOrderActivity;
 import com.aceplus.hackthon.today_menu.TodayMenuActivity;
 
@@ -29,7 +31,9 @@ public class HorizontalPagerAdapter extends PagerAdapter {
             ),
             new Utils.LibraryObject(
                     R.drawable.category_bg2
-            )
+            ),
+            new Utils.LibraryObject(
+                    R.drawable.category_bg3)
     };
 
     private Context mContext;
@@ -68,7 +72,14 @@ public class HorizontalPagerAdapter extends PagerAdapter {
                         Intent i = new Intent(mContext, SpecialOrderActivity.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(i);
+                    }else if (position == 2) {
+                        Intent i = new Intent(mContext, HistoryActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(i);
                     }else {
+                        Intent i = new Intent(mContext, ShopListActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(i);
 
                     }
                 }

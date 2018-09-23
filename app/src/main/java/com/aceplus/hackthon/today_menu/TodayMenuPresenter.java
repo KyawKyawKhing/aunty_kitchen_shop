@@ -24,31 +24,34 @@ public class TodayMenuPresenter implements TodayMenuContract.Presenter {
 
     @Override
     public void getTodayAvailableItem() {
+        view.setLoading(true);
         BackendModel.Companion.getInstance().displayTodayAvailableItem(Utils.Companion.getTodayDateNode(), new ModelCallback.GetTodayAvailableItemCallback() {
             @Override
             public void getDataSucceed(@NotNull List<AvailableItemVO> itemList) {
+                view.setLoading(false);
                 view.displayTodayAvailableItem(itemList);
             }
 
             @Override
             public void getDataFailed(@NotNull String message) {
-
+                view.setLoading(false);
             }
         });
     }
 
     @Override
     public void getUser() {
-
+        view.setLoading(true);
         BackendModel.Companion.getInstance().getUser(new ModelCallback.LoginUserCallback() {
 
             @Override
             public void loginFailed(@NotNull String message) {
-
+                view.setLoading(false);
             }
 
             @Override
             public void loginSucceed(@NotNull UserVO userVO) {
+                view.setLoading(false);
                 view.showUser(userVO);
             }
 

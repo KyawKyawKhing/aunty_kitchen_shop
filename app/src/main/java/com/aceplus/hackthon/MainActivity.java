@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aceplus.hackthon.adapter.HorizontalPagerAdapter;
@@ -24,6 +25,8 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View{
 
+    @BindView(R.id.progressLoading)
+    LinearLayout progressLoading;
     @BindView(R.id.txt_userName)
     TextView txtUserName;
     @BindView(R.id.teamName)
@@ -98,5 +101,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     @Override
     public void showUser(UserVO userVO) {
         txtTeamName.setText(userVO.getUserDepartment());
+    }
+
+    @Override
+    public void setLoading(boolean active) {
+
+       /* if (active){
+            progressLoading.setVisibility(View.VISIBLE);
+        }else {
+            progressLoading.setVisibility(View.GONE);
+        }*/
+
     }
 }

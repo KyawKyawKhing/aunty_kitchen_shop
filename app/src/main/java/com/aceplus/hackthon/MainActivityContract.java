@@ -11,6 +11,8 @@ public class MainActivityContract {
     interface View {
 
         void showUser(UserVO userVO);
+
+        void setLoading(boolean active);
     }
 
     interface Presenter {

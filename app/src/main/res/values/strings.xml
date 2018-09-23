@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">test</string>
+    <string name="app_name">Aunty Shop</string>
     <string name="back"><![CDATA[<< Back]]></string>
     <string name="todayMenu">TODAY\'s MENU</string>
     <string name="sign_in">Sign In</string>
@@ -16,4 +16,5 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="new_password">New Password</string>
+    <string name="Shops">Shops in MICT Park</string>
 </resources>
