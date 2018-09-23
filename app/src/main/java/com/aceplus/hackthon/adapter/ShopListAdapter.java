@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aceplus.hackthon.R;
+import com.aceplus.hackthon.Utils.ShopListDelegate;
 import com.aceplus.hackthon.shoplist.ShopList;
 
 import java.util.List;
@@ -25,11 +26,13 @@ public class ShopListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int VIEW_TYPE_LOADING = 0;
     private static final int VIEW_TYPE_CONTENT = 1;
     private final Context context;
+    private final ShopListDelegate delegate;
     List<ShopList> shopLists;
 
 
-    public ShopListAdapter(Context context) {
+    public ShopListAdapter(Context context, ShopListDelegate delegate) {
         this.context = context;
+        this.delegate = delegate;
     }
 
 
@@ -54,9 +57,12 @@ public class ShopListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((ShopViewHolder) holder).imgV_call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    delegate.callPhone(shopLists.get(position).getShopPhone());
                 }
+
+
             });
+
 
 
 

@@ -28,7 +28,8 @@ import butterknife.OnClick;
 
 public class HistoryActivity extends AppCompatActivity implements HistoryContract.View, DatePickerDialog.OnDateSetListener {
 
-
+    @BindView(R.id.noOrderLayout)
+    LinearLayout noOrderLayout;
     @BindView(R.id.progressLoading)
     LinearLayout progressLoading;
     @BindView(R.id.rcv_history)
@@ -71,12 +72,26 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
 
     @Override
     public void showOrderList(List<OrderItemVO> orderList) {
-        historyListAdapter.setReportList(orderList);
+        if (orderList.size() != 0) {
+            noOrderLayout.setVisibility(View.GONE);
+            historyListAdapter.setReportList(orderList);
+
+        } else {
+            noOrderLayout.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
     public void showOrderListByDate(List<OrderItemVO> orderList) {
-        historyListAdapter.setReportList(orderList);
+
+        if (orderList.size() != 0) {
+            noOrderLayout.setVisibility(View.GONE);
+            historyListAdapter.setReportList(orderList);
+
+        } else {
+            noOrderLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -107,8 +122,8 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
             @Override
             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
                 String month = String.valueOf(monthOfYear + 1);
-                if (month.length() == 1){
-                     searchMonth = "0"+month;
+                if (month.length() == 1) {
+                    searchMonth = "0" + month;
                 }
                 String searchDate = String.valueOf(dayOfMonth) + "-" + String.valueOf(searchMonth) + "-" + String.valueOf(year);
                 String date = String.valueOf(dayOfMonth) + "-" + String.valueOf(searchMonth) + "-" + String.valueOf(year);
@@ -119,7 +134,6 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
 
         dpd.show(getFragmentManager(), "Datepickerdialog");
         dpd.setMaxDate(Calendar.getInstance());
-
 
 
     }

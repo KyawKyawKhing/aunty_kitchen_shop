@@ -67,4 +67,5 @@
     </android.support.v7.widget.RecyclerView>
     </LinearLayout>
     <include layout="@layout/progress_loading_layout" />
+    <include layout="@layout/no_order_layout" />
 </RelativeLayout>

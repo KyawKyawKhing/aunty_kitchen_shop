@@ -77,6 +77,7 @@ public class TodayMenuActivity extends AppCompatActivity implements TodayMenuCon
             cantOrderLayout.setVisibility(View.GONE);
             this.itemList1 = itemList;
             todayMenuRecyclerViewAdapter.setTodayMenuList(itemList1);
+
         }else{
             cantOrderLayout.setVisibility(View.VISIBLE);
         }
