@@ -16,7 +16,7 @@ class AavilableItemViewHolder(itemView: View, val delegate: AvailableItemDelegat
     override fun setData(data: AvailableItemVO) {
         if (data.itemCount != null && data.itemCount!!.toString() != "0") {
             itemView.itemName.text = data.itemName
-            itemView.itemPrice.text = data.itemPrice.toString() + " kyats"
+            itemView.itemPrice.text = data.itemPrice.toString() + " က်ပ္"
             itemView.itemRemaining.text = data.itemCount.toString() + " remaining"
             itemView.visibility = View.VISIBLE
 //            itemView.layoutParams = itemView.layoutParams

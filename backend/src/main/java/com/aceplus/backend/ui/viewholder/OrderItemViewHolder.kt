@@ -25,7 +25,7 @@ class OrderItemViewHolder(itemView: View, val delegate: OrderItemDelegate) : Bas
             itemView.layoutParams = params
 
             itemView.itemName.text = data.itemName
-            itemView.itemPrice.text = data.itemPrice
+            itemView.itemPrice.text = data.itemPrice+ " က်ပ္"
             itemView.itemCount.text = data.itemCount + " ပြဲ"
             itemView.customerName.text = data.customerName
             itemView.customerDept.text = data.customerDepartment

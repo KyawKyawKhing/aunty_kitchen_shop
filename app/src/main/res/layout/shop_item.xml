@@ -36,6 +36,8 @@
                 android:layout_height="wrap_content"
                 android:text="Mote Hin Kar"
                 android:layout_weight="1"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:textColor="@color/colorBlack" />
 
             <TextView

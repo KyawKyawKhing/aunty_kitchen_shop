@@ -40,14 +40,14 @@ public class ShopListActivity extends AppCompatActivity implements ShopListDeleg
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_list);
         shopLists = new ArrayList<>();
-        ShopList onetwofour = new ShopList("124","09 123456 789");
-        ShopList choice = new ShopList("Choice","09 123456 789");
-        ShopList orientalHouse = new ShopList("Oriental House","09 123456 789");
-        ShopList Zeus = new ShopList("Zeus","09 123456 789");
-        ShopList Jdonut = new ShopList("J donut","09 123456 789");
+        ShopList onetwofour = new ShopList("OneTwoFour","09 73201730");
+        ShopList orientalHouse = new ShopList("Oriental House","09 787373531");
+        ShopList choice = new ShopList("Choice","09 77895 789");
+        ShopList Zeus = new ShopList("Zeus","09 98742 789");
+        ShopList Jdonut = new ShopList("J donut","09 4235  789");
+        shopLists.add(orientalHouse);
         shopLists.add(onetwofour);
         shopLists.add(choice);
-        shopLists.add(orientalHouse);
         shopLists.add(Zeus);
         shopLists.add(Jdonut);
 

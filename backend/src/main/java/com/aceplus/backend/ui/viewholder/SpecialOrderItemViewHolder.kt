@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.special_order_listitem.view.*
 class SpecialOrderItemViewHolder(itemView: View) : BaseViewHolder<OrderItemVO>(itemView) {
     override fun setData(data: OrderItemVO) {
         itemView.itemName.text = data.itemName
-        itemView.itemPrice.text = data.itemPrice
+        itemView.itemPrice.text = data.itemPrice+ " က်ပ္"
         itemView.itemCount.text = data.itemCount + " ပြဲ"
         itemView.customerName.text = data.customerName
         itemView.customerDept.text = data.customerDepartment
